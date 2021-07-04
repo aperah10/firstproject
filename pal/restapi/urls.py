@@ -2,12 +2,13 @@ from django.urls import path
 from . import views 
 
 urlpatterns =[
+
     path('reg/', views.DataGet.as_view(),name='getdata') ,
     path('rud/<uuid:pk>/', views.DataRUD.as_view(),name='rud') ,
     path('profile/<uuid:pk>/',views.ProfileRUD.as_view(),name='profilerud'), 
 
     # ==========POST REQUEST FOR ==================
-    path('', views.PostRegister.as_view()) ,
+    path('crreg/', views.PostRegister.as_view()) ,
     path('crcart/',views.PostCart.as_view()),
     path('crlike/',views.PostLike.as_view()),
     path('crnoti/',views.PostNoti.as_view()),  
