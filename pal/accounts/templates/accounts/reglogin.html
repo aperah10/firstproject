@@ -9,6 +9,7 @@
 <body> 
     <h2> Signup Page  </h2>  
     <button> <a href="{% url 'login' %}">   Login    </a>  </button>
+    <li><a href="{% url 'Home' %}"> Home </a></li> 
    <form action="" method="post">
        {% csrf_token %}  
        {{sform.as_p}}
