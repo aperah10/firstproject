@@ -8,22 +8,22 @@ urlpatterns =[
     path('profile/<uuid:pk>/',views.ProfileRUD.as_view(),name='profilerud'), 
 
     # ==========POST REQUEST FOR ==================
-    path('crreg/', views.PostRegister.as_view()) ,
-    path('crcart/',views.PostCart.as_view()),
-    path('crlike/',views.PostLike.as_view()),
-    path('crnoti/',views.PostNoti.as_view()),  
+    path('', views.PostRegister.as_view(),name='postdata') ,
+    path('crcart/',views.PostCart.as_view(),name='postcart'),
+    path('crlike/',views.PostLike.as_view(),name='postlike'),
+    path('crnoti/',views.PostNoti.as_view(),name='postnoti'),  
     
   
     # ============ GET REQUEST FOR ALL ===========================  
-    path('p/',views.AllProduct.as_view(),name='prodcut'), 
-    path('cart/',views.GetCart.as_view()) ,
-    path('like/',views.GetLike.as_view()),
-    path('noti/',views.GetNoti.as_view()) , 
+    path('p/',views.AllProduct.as_view(),name='product'), 
+    path('cart/',views.GetCart.as_view(),name='cart') ,
+    path('like/',views.GetLike.as_view(),name='like'),
+    path('noti/',views.GetNoti.as_view(),name='noti') , 
 
     # ================DELETE DATA ===============
-    path('delcart/',views.DeleteCart.as_view()) ,
-    path('delnoti/',views.DeleteNoti.as_view()) ,
-    path('dellike/',views.DeleteLike.as_view()) ,
+    path('delcart/',views.DeleteCart.as_view(),name='delcart') ,
+    path('delnoti/',views.DeleteNoti.as_view(),name='delnoti') ,
+    path('dellike/',views.DeleteLike.as_view(),name='dellike') ,
 
 
 

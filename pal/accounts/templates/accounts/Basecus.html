@@ -22,7 +22,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'accounts/css/customnavbar.css' %}">
-   
+   {% block s1 %}  {% endblock s1 %}
 
 </head> 
 <body> 
@@ -57,11 +57,17 @@
              
          
           {% if request.user.is_authenticated %}
-          <a href="{% url 'profile' request.user.id %}" class="btn btn-outline-success my-2 btn-sm"> {{request.user.fullname}} </a>
+
+          <a href="{% url 'profile' request.user.id %}"
+           class="btn btn-outline-success my-2 btn-sm"> {{request.user.fullname}} </a>
         
           <a href="{% url 'showaddress' request.user.id  %} " class="btn btn-warning my-2  btn-sm"> Address </a>
 
           <a href="{% url 'logout' %} " class="btn btn-warning my-2  btn-sm"> Logout </a> 
+
+          <!-- API BTTUONS  --> 
+          <a href="{% url 'showaddress' request.user.id  %} " class="btn btn-warning my-2  btn-sm"> Address </a>
+          <!-- END API BUTTIONS  -->
           {% else %}  
           <a href="{% url 'signup'  %} " class="btn btn-warning my-2  btn-sm">Sign in</a> 
          

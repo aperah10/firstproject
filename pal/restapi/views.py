@@ -103,14 +103,14 @@ class GetCart(APIView):
 
     def get(self,request):
         usr= request.user 
-        usr_cart =ProductInCart.objects.filter(Q(customer_cart=usr) & Q(product=c.product)) 
+        usr_cart =ProductInCart.objects.filter(customer_cart=usr) 
         
         try:
             ser=CartSer(usr_cart,many=True)   
             alldata=ser.data
             
         except:
-            alldata=alldata.errors
+            alldata={'msg':'Nodata '}
         return Response(alldata) 
 
 
