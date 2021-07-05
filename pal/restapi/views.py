@@ -99,7 +99,7 @@ class AllProduct(ListAPIView):
             
 # CART FOR USER 
 class GetCart(APIView):
-    permission_classes=[IsAuthenticated] 
+    # permission_classes=[IsAuthenticated] 
 
     def get(self,request):
         usr= request.user 

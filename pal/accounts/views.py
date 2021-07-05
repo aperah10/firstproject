@@ -33,7 +33,7 @@ class Register(View):
             raw_password = sform.cleaned_data.get('password')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return HttpResponseRedirect('/')  
+            return HttpResponseRedirect('Home')  
         else:
             return redirect('signup')
 
@@ -64,7 +64,7 @@ class LoginPage(View):
 # LOGOUT VIEWS 
 def  LogoutPage(request):
     logout(request)
-    return HttpResponseRedirect('/') 
+    return HttpResponseRedirect('signup') 
 
 
 # ------------ -----END SIGNUP & LOGIN PART ---------------------
@@ -119,7 +119,7 @@ class UpAddress(UpdateView):
     model=Address 
     form_class=AddressForm 
     template_name='accounts/Address.html'
-    success_url='/' 
+    success_url='Home' 
 
 # Delete ADDRESS 
 login_required()
