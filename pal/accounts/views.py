@@ -15,8 +15,9 @@ from .models import *
 
 # -----------------START SIGNUP & LOGIN PART ---------------------
 
-def Home(request):
-    return render(request,'accounts/Home.html ')
+class HomePage(TemplateView):
+    template_name='accounts/Home.html'
+   
 
 # SIGNUP  
 class Register(View): 

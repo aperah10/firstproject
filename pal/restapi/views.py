@@ -110,9 +110,9 @@ class GetCart(APIView):
             alldata=ser.data
             
         except:
-            alldata={'msg':'Nodata '}
+            alldata=ser.errors
         return Response(alldata) 
-
+    
 
 
  
