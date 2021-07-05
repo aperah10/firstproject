@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -30,19 +30,9 @@
      </thead>
      <tbody> 
      
-       {% if not request.user.is_authenticated %}
+
  
-         <tr>
-             <td data-label="Serial"> 0 </td>
-             <td data-label="Account"> Product </td>
-     
-             <td data-label="Due Date">04/01/2021</td>
-            
-             <td data-label="Period">   <a href="{% url 'product'  %}" 
-                 class="btn btn-outline-success my-2 btn-sm">
-                  Product </a></td>
-           </tr>
-         {% else %}
+    
          <tr>
            <td data-label="Serial"> 0 </td>
            <td data-label="Account"> Product </td>
@@ -178,7 +168,7 @@
              class="btn btn-outline-success my-2 btn-sm">
               Delete Notification  </a></td>
        </tr>
-     {% endif %}
+
      </tbody>
    </table>
   <!-- END TABLE FOR HOME PAGE  -->
