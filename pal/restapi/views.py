@@ -21,7 +21,7 @@ from .serializer import *
 
 # GET DATA API 
 class DataGet(ListAPIView):
-    permission_classes=[IsAuthenticated,] 
+    # permission_classes=[IsAuthenticated,] 
     queryset= CustomUser.objects.all()
     serializer_class= AccountsSeri 
 
