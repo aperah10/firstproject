@@ -103,10 +103,10 @@ class GetCart(APIView):
 
     def get(self,request):
         usr= request.user 
-        
+        usr_cart =ProductInCart.objects.filter(customer_cart=usr)
         
         try:
-            usr_cart =ProductInCart.objects.filter(customer_cart=usr)
+           
             ser=CartSer(usr_cart,many=True)   
             alldata=ser.data
             
@@ -123,10 +123,10 @@ class GetLike(APIView):
 
     def get(self,request):
         usr= request.user
-        
+        usr_like =Like.objects.filter(user=usr)
        
         try: 
-            usr_like =Like.objects.filter(user=usr)
+            
             ser=LikeSer(usr_like,many=True) 
             alldata=ser.data
            
@@ -143,10 +143,10 @@ class GetNoti(APIView):
    
     def get(self,request):
         usr=request.user 
-        
+        noti=Notification.objects.filter(user=usr)
         
         try:
-            noti=Notification.objects.filter(user=usr)
+           
             ser=NotificationSer(noti,many=True) 
             alldata=ser.data
             
