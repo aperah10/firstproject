@@ -3,12 +3,15 @@ from . import views
 
 urlpatterns =[
 
+    # ========== THIS IS HOME PAGE ==========
+    path('',views.HomePage.as_view(),name='home'),
+
     path('reg/', views.DataGet.as_view(),name='getdata') ,
     path('rud/<uuid:pk>/', views.DataRUD.as_view(),name='rud') ,
     path('profile/<uuid:pk>/',views.ProfileRUD.as_view(),name='profilerud'), 
 
     # ==========POST REQUEST FOR ==================
-    path('', views.PostRegister.as_view(),name='postdata') ,
+    path('crusr', views.PostRegister.as_view(),name='postdata') ,
     path('crcart/',views.PostCart.as_view(),name='postcart'),
     path('crlike/',views.PostLike.as_view(),name='postlike'),
     path('crnoti/',views.PostNoti.as_view(),name='postnoti'),  

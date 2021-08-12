@@ -8,6 +8,7 @@ from django.db.models import Q
 from rest_framework.response import Response 
 from django.contrib.auth.hashers import make_password
 
+from django.views.generic import TemplateView 
 
 # MY IMPORTS FOR ALL FILES   
 from accounts.models import *
@@ -15,6 +16,11 @@ from product.models import *
 from .serializer import *
 
 # Create your views here.
+#  HOME PAGE 
+class HomePage(TemplateView):
+    template_name='restapi/Home.html'
+
+
 
 
 
@@ -99,7 +105,7 @@ class AllProduct(ListAPIView):
             
 # CART FOR USER 
 class GetCart(APIView):
-    # permission_classes=[IsAuthenticated] 
+    permission_classes=[IsAuthenticated] 
 
     def get(self,request):
         usr= request.user 
