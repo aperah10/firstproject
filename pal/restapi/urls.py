@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views 
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns =[
 
@@ -11,6 +12,7 @@ urlpatterns =[
     path('profile/<uuid:pk>/',views.ProfileRUD.as_view(),name='profilerud'), 
 
     # ==========POST REQUEST FOR ==================
+    path('login/', obtain_auth_token),
     path('crusr', views.PostRegister.as_view(),name='postdata') ,
     path('crcart/',views.PostCart.as_view(),name='postcart'),
     path('crlike/',views.PostLike.as_view(),name='postlike'),
