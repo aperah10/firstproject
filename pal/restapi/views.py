@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView ,CreateAPIView ,RetrieveAPIView ,ListCreateAPIView ,RetrieveUpdateDestroyAPIView
 from rest_framework.authentication import BaseAuthentication 
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly,AllowAny
 from rest_framework.authentication import TokenAuthentication  
 from rest_framework.views import APIView
 from django.db.models import Q 
@@ -9,6 +9,13 @@ from rest_framework.response import Response
 from django.contrib.auth.hashers import make_password
 
 from django.views.generic import TemplateView 
+from rest_framework.status import (
+    HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_200_OK)
+from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.authtoken.models import Token
+from rest_framework import generics, permissions
+from rest_framework.decorators import api_view, permission_classes
 
 # MY IMPORTS FOR ALL FILES   
 from accounts.models import *
@@ -66,9 +73,46 @@ class PostRegister(APIView):
         serializer = AccountsSeri(data=new_user)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
+            user = serializer.save()
+            username = data.get('phone')
+            raw_password = data.get('password')
+            
+            cur_user = authenticate(username=username, password=raw_password)
+           
+           
+            token, _ = Token.objects.get_or_create(user=cur_user)
             return Response({"stateCode": 200, "msg": "enter data"}, 200)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
-    
+
+
+# =============================== LOGIN   =====================================
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+def login(request):
+    username = request.data.get("phone")
+    password = request.data.get("password")
+    # if username is None or password is None:
+    #     return Response({'error': 'Please provide both username and password'},
+    #                     status=HTTP_400_BAD_REQUEST)
+    # user = authenticate(username=username, password=password)
+    try:
+        user = authenticate(username=CustomUser.objects.get(
+            email__iexact=username), password=password)
+
+    except:
+        user = authenticate(username=username, password=password)
+
+    if not user:
+        return Response({'error': 'Invalid Credentials'},
+                        status=HTTP_404_NOT_FOUND)
+    token, _ = Token.objects.get_or_create(user=user)
+    return Response({'token': token.key},
+                    status=HTTP_200_OK)
+
+
+
+
 
 # nrw cart post for check 
 class PostCart(CreateAPIView):
