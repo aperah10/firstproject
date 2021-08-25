@@ -81,7 +81,7 @@ class PostRegister(APIView):
            
            
             token, _ = Token.objects.get_or_create(user=cur_user)
-            return Response({"stateCode": 200, "msg": "enter data"}, 200)
+            return Response({"stateCode": 200, "msg": "enter data",'token': token.key,}, 200)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
