@@ -15,7 +15,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authtoken.models import Token
 from rest_framework import generics, permissions
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes 
+
+from rest_framework import filters
+from rest_framework import generics
 
 # MY IMPORTS FOR ALL FILES   
 from accounts.models import *
@@ -136,6 +139,13 @@ class PostNoti(CreateAPIView):
     serializer_class=NotificationSer   
 
 
+ #  PRODUCT SEARCH BAR 
+class SearchProduct(generics.ListAPIView):
+
+    queryset = Product.objects.all()
+    serializer_class = AllProductSer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['title', 'description
 
 
 
@@ -275,5 +285,15 @@ class DeleteNoti(APIView):
             res = {'error': True}
         return Response(res)
 
-         
+  
+# # SERACH PRODUCT 
+# class SearchResultsView(ListView):
+#     model = Product
+    
+#     #prod=Product.objects.all()
+
+#     def get_queryset(self):
+#         query = self.request.GET.get('search')
+#         products=Product.objects.filter(Q(title__icontains=query))
+#         return products
     
