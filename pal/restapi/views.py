@@ -139,13 +139,13 @@ class PostNoti(CreateAPIView):
     serializer_class=NotificationSer   
 
 
- #  PRODUCT SEARCH BAR 
-class SearchProduct(generics.ListAPIView):
+#  #  PRODUCT SEARCH BAR 
+# class SearchProduct(generics.ListAPIView):
 
-    queryset = Product.objects.all()
-    serializer_class = AllProductSer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['title', 'description
+#     queryset = Product.objects.all()
+#     serializer_class = AllProductSer
+#     filter_backends = [DjangoFilterBackend]
+#     filterset_fields = ['title', 'description']
 
 
 
