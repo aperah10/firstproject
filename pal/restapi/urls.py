@@ -31,7 +31,7 @@ urlpatterns =[
     path('delnoti/',views.DeleteNoti.as_view(),name='delnoti') ,
     path('dellike/',views.DeleteLike.as_view(),name='dellike') ,
     
-    path('search/?search=',views.SrchProduct.as_view(),name='searchbar'),
+    path('search/',views.SrchProduct.as_view(),name='searchbar'),
 
 
 ]
