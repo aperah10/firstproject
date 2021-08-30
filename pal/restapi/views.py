@@ -17,13 +17,26 @@ from rest_framework.authtoken.models import Token
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view, permission_classes 
 
-from rest_framework import filters
-from rest_framework import generics
+from rest_framework.filters import SearchFilter
 
 # MY IMPORTS FOR ALL FILES   
 from accounts.models import *
 from product.models import *
 from .serializer import *
+
+ # ! PRODUCT SEARCH BAR 
+class SrchProduct(ListAPIView):
+    # queryset = Product.objects.all()
+    # serializer_class = AllProductSer 
+    # search_fields=['title', 'description']
+    queryset=CustomUser.objects.all()
+    serializer_class=AccountsSeri
+    filter_backends=[SearchFilter]
+    search_fields=['fullname', 'phone']
+#     # ! this is used in Filter 
+#     # filter_backends = [DjangoFilterBackend]
+#     # filterset_fields = ['title', 'description']
+
 
 # Create your views here.
 #  HOME PAGE 
