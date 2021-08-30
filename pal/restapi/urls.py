@@ -30,8 +30,8 @@ urlpatterns =[
     path('delcart/',views.DeleteCart.as_view(),name='delcart') ,
     path('delnoti/',views.DeleteNoti.as_view(),name='delnoti') ,
     path('dellike/',views.DeleteLike.as_view(),name='dellike') ,
-
-#     path('search/',views.SearchProduct.as_view(),name='serachbar'),
+    
+    path('search/',views.SrchProduct.as_view(),name='searchbar'),
 
 
 ]
